@@ -1,0 +1,208 @@
+       IDENTIFICATION DIVISION.                                         
+       PROGRAM-ID.                     PGMUNIVE.                        
+       AUTHOR.                         CARLOS SANCHEZ.                  
+       INSTALLATION.                   PLATZI-PROJECT.                  
+       DATE-WRITTEN.                   01/04/21.                        
+       ENVIRONMENT DIVISION.                                            
+       CONFIGURATION SECTION.                                           
+       SOURCE-COMPUTER.                IBM-3083.                        
+       OBJECT-COMPUTER.                IBM-3083.                        
+                                                                        
+       INPUT-OUTPUT SECTION.                                            
+       FILE-CONTROL.                                                    
+           SELECT ALUMNO               ASSIGN TO UT-S-ALUMNO.           
+           SELECT REPORTE              ASSIGN TO UT-S-REPORTE.          
+                                                                        
+       DATA DIVISION.                                                   
+       FILE SECTION.                                                    
+       FD ALUMNO                                                        
+           LABEL RECORDS ARE STANDARD                                   
+           RECORD CONTAINS 50 CHARACTERS                                
+           BLOCK CONTAINS 0 RECORDS                                     
+           DATA RECORD IS REG-ALUMNOS.                                  
+       01  REG-ALUMNOS                 PIC X(50).                       
+                                                                        
+       FD REPORTE                                                       
+           LABEL RECORDS ARE STANDARD                                   
+           RECORD CONTAINS 80 CHARACTERS                                
+           BLOCK CONTAINS 0 RECORDS                                     
+           DATA RECORD IS REG-REPORTE.                                  
+       01  REG-REPORTE                 PIC X(80).                       
+                                                                        
+       WORKING-STORAGE SECTION.                                         
+       77  WSS-FIN                     PIC X(03) VALUE '   '.           
+           88 WSS-SI                             VALUE 'FIN'.           
+       01  WSV-AREAS-TRABAJO.                                           
+           05 WSV-REG-ALUMNOS.                                          
+              10 WSV-BOLETA-ALU        PIC 9(04).                       
+              10 WSV-NOMBRE-ALU        PIC X(25).                       
+              10 WSV-PROM-ALUMN        PIC 99V9.                        
+              10 WSV-ALUMN-BEC         PIC 9(01).                       
+              10 WSV-BECA-ALUMN        PIC 9(07)V99.                    
+           05 WSV-ALUMNOS-LEI          PIC 9(05) VALUE ZEROS.           
+           05 WSV-ALUMN-IMP            PIC 9(05) VALUE ZEROS.           
+           05 WSV-TOT-MONT-BEC         PIC 9(09)V99 VALUE ZEROS.        
+      *    05 WSS-FIN                  PIC X(03) VALUE SPACES.          
+       01  WSC-TIT-1.                                                   
+           05 FILLER                   PIC X(30) VALUE SPACES.          
+           05 WSC-T1                   PIC X(18)                        
+                                       VALUE 'UNIVERSIDAD PLATZI'.      
+           05 FILLER                   PIC X(32) VALUE SPACES.          
+       01  WSC-TIT-2.                                                   
+           05 FILLER                   PIC X(08) VALUE ' FECHA: '.      
+           05 WSC-TIT-2-DIA            PIC 9(02).                       
+           05 FILLER                   PIC X(01) VALUE '/'.             
+           05 WSC-TIT-2-MES            PIC 9(02).                       
+           05 FILLER                   PIC X(01) VALUE '/'.             
+           05 WSC-TIT-2-ANIO           PIC 9(04).                       
+           05 FILLER                   PIC X(08) VALUE SPACES.          
+           05 WSC-TITU-2               PIC X(26) VALUE                  
+                                       'CONTROL DE ALUMNOS BECADOS'.    
+           05 FILLER                   PIC X(14) VALUE SPACES.          
+           05 FILLER                   PIC X(08) VALUE 'PAGINA: '.      
+           05 WSC-TIT-2-PAGINA         PIC ZZ9.                         
+           05 FILLER                   PIC X(03) VALUE SPACES.          
+       01  WSC-GUIONES.                                                 
+           05 FILLER                   PIC X(01).                       
+           05 FILLER                   PIC X(78) VALUE ALL '-'.         
+           05 FILLER                   PIC X(01) VALUE SPACES.          
+       01  WSC-COL-DETA-1.                                              
+           05 FILLER                   PIC X(03) VALUE SPACES.          
+           05 FILLER                   PIC X(06) VALUE 'BOLETA'.        
+           05 FILLER                   PIC X(12) VALUE SPACES.          
+           05 FILLER                   PIC X(06) VALUE 'NOMBRE'.        
+           05 FILLER                   PIC X(13) VALUE SPACES.          
+           05 FILLER                   PIC X(08) VALUE 'PROMEDIO'.      
+           05 FILLER                   PIC X(04) VALUE SPACES.          
+           05 FILLER                   PIC X(06) VALUE 'BECADO'.        
+           05 FILLER                   PIC X(08) VALUE SPACES.          
+           05 FILLER                   PIC X(13) VALUE 'MONTO DE BECA'. 
+           05 FILLER                   PIC X(01) VALUE SPACES.          
+       01  WSC-GUION-DETA.                                              
+           05 FILLER                   PIC X(01) VALUE SPACES.          
+           05 FILLER                   PIC X(08) VALUE '--------'.      
+           05 FILLER                   PIC X(04) VALUE SPACES.          
+           05 FILLER                   PIC X(25)                        
+                                    VALUE '-------------------------'.  
+           05 FILLER                   PIC X(02) VALUE SPACES.          
+           05 FILLER                   PIC X(08) VALUE '--------'.      
+           05 FILLER                   PIC X(04) VALUE SPACES.          
+           05 FILLER                   PIC X(06) VALUE '------'.        
+           05 FILLER                   PIC X(07) VALUE SPACES.          
+           05 FILLER                   PIC X(14) VALUE '--------------'.
+       01  WSV-DETALLE.                                                 
+           05 FILLER                   PIC X(04) VALUE SPACES.          
+           05 WSV-DET-BOLETA           PIC ZZZZ9.                       
+           05 FILLER                   PIC X(04) VALUE SPACES.          
+           05 WSV-DET-NOMBRE           PIC X(25).                       
+           05 FILLER                   PIC X(06) VALUE SPACES.          
+           05 WSV-DET-PROMEDIO         PIC ZZ.9.                        
+           05 FILLER                   PIC X(06) VALUE SPACES.          
+           05 WSV-DET-BECADO           PIC X(02).                       
+           05 FILLER                   PIC X(11) VALUE SPACES.          
+           05 WSV-DET-BECA             PIC Z,ZZZ,ZZ9.99.                
+       01  WSV-DETALLE-LEIDOS.                                          
+           05 FILLER                   PIC X(01).                       
+           05 FILLER                   PIC X(29)                        
+                                  VALUE 'TOTAL DE ALUMNOS LEIDOS    : '.
+           05 WSV-TOT-LEIDOS           PIC ZZ,ZZ9.                      
+           05 FILLER                   PIC X(44) VALUE SPACES.          
+       01  WSV-DETALLE-IMPRESOS.                                        
+           05 FILLER                   PIC X(01).                       
+           05 FILLER                   PIC X(29)                        
+                                VALUE 'TOTAL DE ALUMNOS IMPRESOS  : '.  
+           05 WSV-TOT-IMPRESOS         PIC ZZ,ZZ9.                      
+           05 FILLER                   PIC X(44) VALUE SPACES.          
+                                                                        
+       01  WSV-DETALLE-SALARIOS.                                        
+           05 FILLER                   PIC X(01).                       
+           05 FILLER                   PIC X(35)                        
+                            VALUE 'MONTO TOTAL DESTINADO A BECAS   :'.  
+           05 FILLER                   PIC X(30) VALUE SPACES.          
+           05 WSV-DET-BECA2            PIC $$$,$$$,$$9.99.              
+                                                                        
+       LINKAGE SECTION.                                                 
+       01  LK-FECHA.                                                    
+           05 FILLER                   PIC X(02).                       
+           05 LK-DIA                   PIC 9(02).                       
+           05 LK-MES                   PIC 9(02).                       
+           05 LK-ANIO                  PIC 9(04).                       
+                                                                        
+       PROCEDURE DIVISION USING LK-FECHA.                               
+                                                                        
+       010-INICIO.                                                      
+           PERFORM 020-ABRE-ARCHIVOS   THRU 020-FIN                     
+           PERFORM 030-TITULOS         THRU 030-FIN                     
+           PERFORM 040-LEE             THRU 040-FIN                     
+           IF WSS-FIN = 'FIN'                                           
+             PERFORM 050-CIF-CONTROL   THRU 050-FIN                     
+             PERFORM 060-FINAL         THRU 060-FIN                     
+           ELSE                                                         
+             PERFORM 040-PROCESO       THRU 040-FIN                     
+                   UNTIL WSS-FIN EQUAL 'FIN'                            
+           PERFORM 060-FINAL           THRU 060-FIN                     
+           GOBACK.                                                      
+                                                                        
+       020-ABRE-ARCHIVOS.                                               
+           OPEN INPUT  ALUMNO                                           
+                OUTPUT REPORTE.                                         
+       020-FIN.  EXIT.                                                  
+                                                                        
+       030-TITULOS.                                                     
+           WRITE REG-REPORTE           FROM WSC-TIT-1                   
+           MOVE LK-DIA                 TO WSC-TIT-2-DIA                 
+           MOVE LK-MES                 TO WSC-TIT-2-MES                 
+           MOVE LK-ANIO                TO WSC-TIT-2-ANIO                
+           MOVE 1                      TO WSC-TIT-2-PAGINA              
+           WRITE REG-REPORTE           FROM WSC-TIT-2                   
+           WRITE REG-REPORTE           FROM WSC-GUIONES                 
+           WRITE REG-REPORTE           FROM WSC-COL-DETA-1              
+           WRITE REG-REPORTE           FROM WSC-GUION-DETA.             
+       030-FIN.  EXIT.                                                  
+                                                                        
+       040-PROCESO.                                                     
+           ADD 1                       TO WSV-ALUMNOS-LEI               
+           ADD WSV-BECA-ALUMN          TO WSV-TOT-MONT-BEC              
+           MOVE WSV-BOLETA-ALU         TO WSV-DET-BOLETA                
+           MOVE WSV-NOMBRE-ALU         TO WSV-DET-NOMBRE                
+           MOVE WSV-PROM-ALUMN         TO WSV-DET-PROMEDIO              
+           PERFORM 041-BECADO                                           
+           MOVE WSV-BECA-ALUMN         TO WSV-DET-BECA                  
+           WRITE REG-REPORTE           FROM WSV-DETALLE                 
+           ADD 1                       TO WSV-ALUMN-IMP.                
+                                                                        
+       041-BECADO.                                                      
+           IF WSV-ALUMN-BEC = 1                                         
+              MOVE 'SI'                TO WSV-DET-BECADO                
+           ELSE                                                         
+              MOVE 'NO'                TO WSV-DET-BECADO.               
+       041-FIN.  EXIT.                                                  
+                                                                        
+       040-LEE.                                                         
+           READ ALUMNO                 INTO WSV-REG-ALUMNOS AT END      
+                MOVE 'FIN'             TO WSS-FIN.                      
+       040-FIN.  EXIT.                                                  
+                                                                        
+       050-CIF-CONTROL.                                                 
+           DISPLAY ' '                                                  
+           DISPLAY '        ****CIFRAS DE CONTROL****'                  
+           DISPLAY ' '                                                  
+           DISPLAY '------------------ *** ----------------------'      
+           DISPLAY '**   EL ARCHIVO DE ALUMNOS  ESTA VACIO,    **'      
+           DISPLAY '**   TERMINA EJECUCION SIN PROCESAR DATOS. **'      
+           DISPLAY '------------------ *** ----------------------'      
+           DISPLAY ' '                                                  
+           CLOSE ALUMNO  REPORTE                                        
+           STOP RUN.                                                    
+       050-FIN.  EXIT.                                                  
+                                                                        
+       060-FINAL.                                                       
+           WRITE REG-REPORTE           FROM WSC-GUIONES                 
+           MOVE WSV-ALUMNOS-LEI        TO WSV-TOT-LEIDOS                
+           WRITE REG-REPORTE           FROM WSV-DETALLE-LEIDOS          
+           MOVE WSV-ALUMN-IMP          TO WSV-TOT-IMPRESOS              
+           WRITE REG-REPORTE           FROM WSV-DETALLE-IMPRESOS        
+           MOVE WSV-TOT-MONT-BEC       TO WSV-DET-BECA2                 
+           WRITE REG-REPORTE           FROM WSV-DETALLE-SALARIOS        
+           CLOSE ALUMNO  REPORTE.                                       
+       060-FIN.  EXIT.                                                         
