@@ -2,11 +2,11 @@
 
 _Este repo contiene el código escrito en COBOL que es el proyecto final de este curso y el proyecto genera con base en un archivo de entrada, un reporte  de alumnos becados_
 
-## CREACION DE TU PRIMER PROYECTO 🚀
+## CREACIÓN DE TU PRIMER PROYECTO 🚀
 
 _Programa COBOL que utiliza lo repasado en este curso y sirve para presnetar un reporte de estadisticas de becados de la universidad PLATZI, pertenece a la **clase**:_ 
 
-* **Creacion del programa** 
+* **Creación del programa** 
    * Componentes
       *  JCLREPU.txt         (JCL compilación y ejecución programa PGMUNIV)
       *  JOB_CREATION.txt    (JCL creación de cascaron de archivo de entrada)
