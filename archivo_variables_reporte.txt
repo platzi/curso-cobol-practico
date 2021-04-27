@@ -1,0 +1,98 @@
+       WORKING-STORAGE SECTION.
+       77  WSS-FIN                     PIC X(03) VALUE '   '.
+           88 WSS-SI                             VALUE 'FIN'.
+       01  WSV-AREAS-TRABAJO.
+           05 WSV-REG-ALUMNOS.
+              10 WSV-BOLETA-ALU        PIC 9(04).
+              10 WSV-NOMBRE-ALU        PIC X(25).
+              10 WSV-PROM-ALUMN        PIC 99V9.
+              10 WSV-ALUMN-BEC         PIC 9(01).
+              10 WSV-BECA-ALUMN        PIC 9(07)V99.
+           05 WSV-ALUMNOS-LEI          PIC 9(05) VALUE ZEROS.
+           05 WSV-ALUMN-IMP            PIC 9(05) VALUE ZEROS.
+           05 WSV-TOT-MONT-BEC         PIC 9(09)V99 VALUE ZEROS.
+      *    05 WSS-FIN                  PIC X(03) VALUE SPACES.
+       01  WSC-TIT-1.
+           05 FILLER                   PIC X(30) VALUE SPACES.
+           05 WSC-T1                   PIC X(18)
+                                       VALUE 'UNIVERSIDAD PLATZI'.
+           05 FILLER                   PIC X(32) VALUE SPACES.
+       01  WSC-TIT-2.
+           05 FILLER                   PIC X(08) VALUE ' FECHA: '.
+           05 WSC-TIT-2-DIA            PIC 9(02).
+           05 FILLER                   PIC X(01) VALUE '/'.
+           05 WSC-TIT-2-MES            PIC 9(02).
+           05 FILLER                   PIC X(01) VALUE '/'.
+           05 WSC-TIT-2-ANIO           PIC 9(04).
+           05 FILLER                   PIC X(08) VALUE SPACES.
+           05 WSC-TITU-2               PIC X(26) VALUE
+                                       'CONTROL DE ALUMNOS BECADOS'.
+           05 FILLER                   PIC X(14) VALUE SPACES.
+           05 FILLER                   PIC X(08) VALUE 'PAGINA: '.
+           05 WSC-TIT-2-PAGINA         PIC ZZ9.
+           05 FILLER                   PIC X(03) VALUE SPACES.
+       01  WSC-GUIONES.
+           05 FILLER                   PIC X(01).
+           05 FILLER                   PIC X(78) VALUE ALL '-'.
+           05 FILLER                   PIC X(01) VALUE SPACES.
+       01  WSC-COL-DETA-1.
+           05 FILLER                   PIC X(03) VALUE SPACES.
+           05 FILLER                   PIC X(06) VALUE 'BOLETA'.
+           05 FILLER                   PIC X(12) VALUE SPACES.
+           05 FILLER                   PIC X(06) VALUE 'NOMBRE'.
+           05 FILLER                   PIC X(13) VALUE SPACES.
+           05 FILLER                   PIC X(08) VALUE 'PROMEDIO'.
+           05 FILLER                   PIC X(04) VALUE SPACES.
+           05 FILLER                   PIC X(06) VALUE 'BECADO'.
+           05 FILLER                   PIC X(08) VALUE SPACES.
+           05 FILLER                   PIC X(13) VALUE 'MONTO DE BECA'.
+           05 FILLER                   PIC X(01) VALUE SPACES.
+       01  WSC-GUION-DETA.
+           05 FILLER                   PIC X(01) VALUE SPACES.
+           05 FILLER                   PIC X(08) VALUE '--------'.
+           05 FILLER                   PIC X(04) VALUE SPACES.
+           05 FILLER                   PIC X(25)
+                                    VALUE '-------------------------'.
+           05 FILLER                   PIC X(02) VALUE SPACES.
+           05 FILLER                   PIC X(08) VALUE '--------'.
+           05 FILLER                   PIC X(04) VALUE SPACES.
+           05 FILLER                   PIC X(06) VALUE '------'.
+           05 FILLER                   PIC X(07) VALUE SPACES.
+           05 FILLER                   PIC X(14) VALUE '--------------'.
+       01  WSV-DETALLE.
+           05 FILLER                   PIC X(04) VALUE SPACES.
+           05 WSV-DET-BOLETA           PIC ZZZZ9.
+           05 FILLER                   PIC X(04) VALUE SPACES.
+           05 WSV-DET-NOMBRE           PIC X(25).
+           05 FILLER                   PIC X(06) VALUE SPACES.
+           05 WSV-DET-PROMEDIO         PIC ZZ.9.
+           05 FILLER                   PIC X(06) VALUE SPACES.
+           05 WSV-DET-BECADO           PIC X(02).
+           05 FILLER                   PIC X(11) VALUE SPACES.
+           05 WSV-DET-BECA             PIC Z,ZZZ,ZZ9.99.
+       01  WSV-DETALLE-LEIDOS.
+           05 FILLER                   PIC X(01).
+           05 FILLER                   PIC X(29)
+                                  VALUE 'TOTAL DE ALUMNOS LEIDOS    : '.
+           05 WSV-TOT-LEIDOS           PIC ZZ,ZZ9.
+           05 FILLER                   PIC X(44) VALUE SPACES.
+       01  WSV-DETALLE-IMPRESOS.
+           05 FILLER                   PIC X(01).
+           05 FILLER                   PIC X(29)
+                                VALUE 'TOTAL DE ALUMNOS IMPRESOS  : '.
+           05 WSV-TOT-IMPRESOS         PIC ZZ,ZZ9.
+           05 FILLER                   PIC X(44) VALUE SPACES.
+
+       01  WSV-DETALLE-SALARIOS.
+           05 FILLER                   PIC X(01).
+           05 FILLER                   PIC X(35)
+                            VALUE 'MONTO TOTAL DESTINADO A BECAS   :'.
+           05 FILLER                   PIC X(30) VALUE SPACES.
+           05 WSV-DET-BECA2            PIC $$$,$$$,$$9.99.
+
+       LINKAGE SECTION.
+       01  LK-FECHA.
+           05 FILLER                   PIC X(02).
+           05 LK-DIA                   PIC 9(02).
+           05 LK-MES                   PIC 9(02).
+           05 LK-ANIO                  PIC 9(04).
