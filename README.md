@@ -8,13 +8,14 @@ _Programa COBOL que utiliza lo repasado en este curso y sirve para presnetar un 
 
 * **Creación del programa** 
    * Componentes
-      *  JCLREPU.txt         (JCL compilación y ejecución programa PGMUNIV)
-      *  JOB_CREATION.txt    (JCL creación de cascaron de archivo de entrada)
-      *  PGMUNIVE.txt        (programa COBOL para generar reporte)
-      *  PROC_COMPI.txt      (PROCEDURE de compilacion visto en la clase de JCL)
-      *  REPORTE.txt         (Reporte final resultado de la ejecucion del programa PGMUNIVE)
-      *  ARCH_ENT_NO.txt     (Archivo de entrada vacio para demostrar el uso del ABORTA controlado en el programa)
-      *  ARCH_ENT_SI.txt     (Archivo de entrada con datos para generar el REPORTE )
+      *  JCLREPU.txt                       (JCL compilación y ejecución programa PGMUNIV)
+      *  JOB_CREATION.txt                  (JCL creación de cascaron de archivo de entrada)
+      *  archivo_variables_reporte.txt     (variables pertenecientes al programa COBOL para "maquetar" la estructura del reporte)
+      *  PGMUNIVE.txt                      (programa COBOL para generar reporte)
+      *  PROC_COMPI.txt                    (PROCEDURE de compilacion visto en la clase de JCL)
+      *  REPORTE.txt                       (Reporte final resultado de la ejecucion del programa PGMUNIVE)
+      *  ARCH_ENT_NO.txt                   (Archivo de entrada vacio para demostrar el uso del ABORTA controlado en el programa)
+      *  ARCH_ENT_SI.txt                   (Archivo de entrada con datos para generar el REPORTE)
       
       
 
