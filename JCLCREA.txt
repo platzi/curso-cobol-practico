@@ -1,0 +1,12 @@
+//CLEANUP EXEC PGM=IEFBR14                          
+//VTAMOBJ  DD  DISP=(MOD,DELETE),                   
+//             UNIT=3350,                           
+//             DSN=HERC01.*,                        
+//             SPACE=(TRK,(0))                      
+//ALLOC   EXEC PGM=IEFBR14                          
+//VTAMOBJ  DD  DISP=(,CATLG,DELETE),                
+//             DSN=HERC01.*,                        
+//             UNIT=3350,                           
+//             VOL=SER=PUB010,                      
+//             DCB=(LRECL=50,BLKSIZE=4000,RECFM=FB),
+//             SPACE=(TRK,(75,2,0))                 
